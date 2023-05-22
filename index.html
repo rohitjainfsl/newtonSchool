@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script>
+      // const obj1 = {name: 'Sachin'}
+      // const obj2 = {name: 'Kohli'}
+
+      // console.log({...obj1, ...obj2}) //{name: Kohli}
+
+      // const arr = [12,13,14]
+      // // const obj = {arr}
+      // //{arr: [12,13,14]}
+
+      // arr[3] = 15
+
+      // const obj = {...arr}
+      // //{0:12, 1:13, 2:14}
+      // console.log(obj[3]) //undefined
+
+    //   const arr = [12, 5, 122, 4, 9, 67];
+
+    //   function sortArray(arr) {
+    //     return arr.sort((a, b) => {
+    //       return b - a;
+    //     });
+    //   }
+
+    //   const [a, b, c, d, e, f] = sortArray(arr);
+    //   console.log(a + c + d);
+
+
+    // Shallow Copy: where both copies share the same memory location. Change in one reflects in the other as well.
+    // Deep Copy: where both copies do share the same memory location. Change in one DOES NOT reflect in the other.
+
+
+    // const obj = {company: 'Newton School', course: 'FSD'}
+
+    // const obj2 = obj; //SHALLOW
+
+    // obj2.course = "DSA"
+
+    // console.log(obj2.course);
+    // console.log(obj.course);
+
+    // const obj3 = Object.create(obj); //SHALLOW
+
+    // const obj4 = {...obj} //DEEP
+    // obj4.company = "Unacademy"
+
+    // console.log(obj.company);
+
+    //structuredClone
+
+
+
+
+      const person = {
+        name: "Rohit Jain",
+        profession: "Full Stack Trainer",
+        address: {
+          state: "Rajasthan",
+          city: "Udaipur",
+        },
+      };
+
+      const student = { ...person }; //DEEP COPY 
+
+      student.address.state = "Karnataka";
+      console.log(person.address.state); //Karnataka
+
+      student.name = "Abdur Rahman";
+      console.log(person.name); //Rohit Jain
+    </script>
+  </body>
+</html>

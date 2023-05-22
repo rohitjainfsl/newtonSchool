@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Basics</title>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+
+    <script>
+      // VARY + ABLE: containers to store data
+
+      // var x = 1;
+
+      //   let x = 1;
+
+      // let a = 1;
+
+      // {
+      //     let a = 2;
+      //     console.log(a); //2
+      // }
+      // console.log(a); //1
+
+      // const pi = 3.14
+      // pi = 3.24;
+
+      //DATA TYPES:
+
+      //   let a = 1; //number
+      //   let b = 2.5; //number
+
+      //   let c = "Rohit Jain"; //string
+      //   let d = "R"; //string
+      //   let e = "100"; //string
+
+      //   let f = []; // Array
+
+      //   let g = {}; //Objects
+
+      // let h = null;
+
+      //   let i; //undefined
+
+      //   let j = true;
+
+      // console.log(1 + 2 + 3 + "Apple");
+
+      //   console.log("Apple" + 1 + 2 + 3); //Apple123
+
+      //OPERATORS
+      // +,-,*, /, %
+
+      //   console.log(10 / 2);
+
+      // <, >, <=, >=
+
+      // ==, ===, !=, !==
+
+      // console.log(10 != '10') //false
+
+      // = =  checks only for the value on both sides
+      // = = =  checks for the data type as well as value on both sides
+
+      // console.log(10 == '10') //true
+      // console.log(10 === '10') //false
+
+      // let a = 0;
+      // console.log(a) //0
+      // console.log(++a) // 1
+      // console.log(a++) // 1
+      // console.log(a--) // 2
+      // console.log(--a) // 0
+
+      // a++
+      // ++a
+      // --a
+      // a--
+      // console.log(a)
+
+      let a = 11;
+
+      // if(a %2 === 0){
+      //     console.log("Even")
+      // }
+      // else{
+      //     console.log("Odd")
+      // }
+
+      // Ternary Operator:
+      // return (a %2 === 0) ? "Even" : "Odd"
+
+      //   for (let i = 1; i <= 10; i++) {
+      //     if (i === 5) break;
+      //     document.write(i + "<br>");
+      //   }
+
+      //   for (let i = 1; i <= 50; i++) {
+
+      //     document.write(i + "<br");
+      //   }
+
+      // Write a for loop from 1 till 100, omit 20 - 30 and 60-70
+
+      //   for (let i = 1; i <= 100; i++) {
+      //     if ((i >= 20 && i <= 30) || (i >= 60 && i <= 70)) continue;
+      //     document.write(i + "<br>");
+      //   }
+
+      // alert(), confirm(), prompt() //popup boxes
+
+      // alert("Hello World")
+
+      // alert("Hello World")
+
+      // let answer = confirm("Are you above 18 years of age?")
+
+      // if(answer === true){
+      //     alert("You are of voting age")
+      // }
+      // else    alert("You cannot vote")
+
+      // let name = prompt("What is your name?")
+      // alert("Hello " + name + ". How are you?")
+
+      // console.log("Hello World")
+
+      // document.write("Hello World")
+
+      //   console.log(3 < 2 < 1);
+
+      // Functions: write once, use multiple times
+
+      //FUNCTIONS HAVING DEFAULT VALUES
+      //   function sum(a = 5, b = 5) {
+      //     document.write(a + b);
+      //   }
+
+      //   //   sum(10, 20);
+
+      //   sum(10);
+      //   sum();
+
+      function sum(a = 1, b = 2) {
+        return a + b;
+      }
+      document.write(sum(10, 20));
+    </script>
+  </body>
+</html>
