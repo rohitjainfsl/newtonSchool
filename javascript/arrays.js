@@ -66,27 +66,80 @@ const numbers = [1, 2, 3, 4, 5];
 
 //MDN
 
+// function sumOfProductOfDigits(n1, n2) {
+//   //which number has higher digits
+//   let output = 0;
+//   if (n1.length > n2.length) {
+//     for (let i = n1.length - 1; i >= 0; i--) {
+//       if (n2[i] !== undefined) output += n2[i] * n1[i];
+//       else output += n1[i] * 0;
+//     }
+//   } else {
+//     if (n2.length > n1.length) {
+//       for (let i = n2.length - 1; i >= 0; i--) {
+//         if (n1[i] !== undefined) output += n2[i] * n1[i];
+//         else output += n2[i] * 0;
+//       }
+//     } else {
+//       for (let i = 0; i < n1.length; i++) {
+//         output += n1[i] * n2[i];
+//       }
+//     }
+//   }
+//   return output;
+// }
+
+// sumOfProductOfDigits(10, 150);
+
+// function sumOfProductOfDigits(n1, n2) {
+//   const str1 = String(n1);
+//   const str2 = String(n2);
+
+//   // const str1 = n1 + ''
+//   // const str2 = n2 + ''
+
+//   let sum = 0;
+
+//   for (let i = 0; i < Math.max(str1.length, str2.length); i++) {
+//       const digit1 = Number(str1[i]) || 0;
+//       const digit2 = Number(str2[i]) || 0;
+//       sum += digit1 * digit2;
+//   }
+
+//   return sum;
+// }
+
+
+
+
+
+
 function sumOfProductOfDigits(n1, n2) {
-  //which number has higher digits
-  let output = 0;
-  if (n1.length > n2.length) {
-    for (let i = n1.length - 1; i >= 0; i--) {
-      if (n2[i] !== undefined) output += n2[i] * n1[i];
-      else output += n1[i] * 0;
-    }
-  } else {
-    if (n2.length > n1.length) {
-      for (let i = n2.length - 1; i >= 0; i--) {
-        if (n1[i] !== undefined) output += n2[i] * n1[i];
-        else output += n2[i] * 0;
+  //   //which number has higher digits
+    let output = 0;
+    let a1 = String(n1)
+    let a2 = String(n2)
+  
+    if (a1.length > a2.length) {
+      for (let i = a1.length - 1; i >= 0; i--) {
+        console.log(a2[i])
+        if (a2[i] !== undefined) output += Number(a2[i]) * Number(a1[i]);
+        else output += Number(a1[i]) * 0;
       }
     } else {
-      for (let i = 0; i < n1.length; i++) {
-        output += n1[i] * n2[i];
+      if (a2.length > a1.length) {
+        for (let i = a2.length - 1; i >= 0; i--) {
+          console.log(a1[i])
+          if (a1[i] !== undefined) output += Number(a2[i]) * Number(a1[i]);
+          else output += Number(a2[i]) * 0;
+        }
+      } else {
+        for (let i = 0; i < a1.length; i++) {
+          output += Number(a1[i]) * Number(a2[i]);
+        }
       }
     }
+    return output;
   }
-  return output;
-}
 
-sumOfProductOfDigits(10, 150);
+  sumOfProductOfDigits(35, 6798) 
