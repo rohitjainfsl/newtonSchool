@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boxes Show Hide</title>
+    <link rel="stylesheet" href="boxesShowHide.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="boxes">
+        <div class="box">
+          <h2>Heading 1</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
+            ipsa? Quos, sunt veniam optio similique aut iusto sapiente expedita
+            ullam tempora iste deserunt animi harum dolorum rerum error ipsa
+            vel?
+          </p>
+          <a href="">Show Box</a>
+        </div>
+        <div class="box">
+          <h2>Heading 2</h2>
+          <p>
+            Totam eos, enim ad eveniet porro harum maxime debitis deleniti
+            natus. Autem magnam neque debitis in nihil eius repudiandae. Commodi
+            quaerat est error ipsam a aliquam quia magni consequuntur unde.
+          </p>
+          <a href="">Show Box</a>
+        </div>
+        <div class="box">
+          <h2>Heading 3</h2>
+          <p>
+            Alias neque veritatis consequuntur culpa sapiente aspernatur non
+            nostrum expedita? Sed dolorem nemo officia ex minus ipsam odio
+            repellat asperiores dolore unde. Saepe libero provident ipsam
+            praesentium suscipit earum sint?
+          </p>
+          <a href="">Show Box</a>
+        </div>
+        <div class="box">
+          <h2>Heading 4</h2>
+          <p>
+            Optio iusto pariatur earum tempore ipsum tenetur labore aspernatur
+            magnam nam autem, voluptatibus quidem maiores eum, harum nobis
+            molestias nihil! Aut nesciunt porro quis aliquam ut vero magnam.
+            Sunt, ducimus?
+          </p>
+          <a href="">Show Box</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const headings = document.querySelectorAll(".box h2");
+      const anchors = document.querySelectorAll(".box a")
+
+      headings.forEach((heading) => {
+        heading.addEventListener("click", () => {
+          const boxDiv = heading.parentElement;
+          for (let i = 0; i < boxDiv.children.length; i++) {
+            if(i === boxDiv.children.length - 1){
+                //i.e. if we are on the last element, show it
+                boxDiv.children[i].style.display = "block"
+            }
+            else{
+                //hide all the other children
+                boxDiv.children[i].style.display = "none"
+            }
+          }
+        });
+      });
+
+
+      anchors.forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+            e.preventDefault(); //this will prevent the browser's default action from happening. In our case, its the page reloading
+            const boxDiv = anchor.parentElement;
+            for (let i = 0; i < boxDiv.children.length; i++) {
+            if(i === boxDiv.children.length - 1){
+                //i.e. if we are on the last element, hide it
+                boxDiv.children[i].style.display = "none"
+            }
+            else{
+                //show all the other children
+                boxDiv.children[i].style.display = "block"
+            }
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

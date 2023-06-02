@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation</title>
+    <style>
+      .day {
+        background-color: white;
+        color: black;
+      }
+
+      .night {
+        background-color: black;
+        color: gold;
+      }
+
+      .button_night {
+        background-color: darkblue;
+        color: white;
+      }
+
+      .button_day {
+        background-color: white;
+        color: black;
+      }
+
+      html,
+      body {
+        margin: 0px;
+        height: 100%;
+      }
+
+      #app {
+        height: 100%;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div id="app" class="day">
+      <p>
+        I am a Newton School student, ready to become an awesome full stack
+        developer
+      </p>
+      <p>Newton School</p>
+      <button>Toggle theme</button> -->
+
+
+      <!-- <button id="btn">Click Me</button> -->
+
+      <button class="btn">Click Me</button>
+      <button class="btn">Click Me Too</button>
+      <button class="btn">Click Me As Well</button>
+
+
+
+
+
+    </div>
+    <script>
+      // console.log(document.getElementById("app")); //will alway give you a single element
+
+      
+      // console.log(document.getElementsByClassName("day")); //will always return a collection of elements
+
+
+
+      // console.log(document.getElementsByTagName("p"))
+
+
+
+
+      // document.getElementById("btn").addEventListener("click", () => {
+      //   console.log("Hello Javascript")
+      // })
+
+
+      // document.getElementsByClassName("btn").addEventListener("click", () => {
+      //   console.log("Hello Javascript")
+      // })
+
+
+      // document.getElementsByClassName("btn")[0].addEventListener("click", () => {
+      //   console.log("First Button")
+      // })
+      // document.getElementsByClassName("btn")[1].addEventListener("click", () => {
+      //   console.log("Second Button")
+      // })
+      // document.getElementsByClassName("btn")[2].addEventListener("click", () => {
+      //   console.log("Third Button")
+      // })
+
+
+      // const btnCollection = document.getElementsByClassName("btn")
+
+      // for(let i=0;i<btnCollection.length; i++){
+      //   btnCollection[i].addEventListener("click", () => {
+      //     console.log("Hello Javascript")
+      //   })
+      // }
+
+
+
+
+      // document.getElementsByName()
+
+
+
+
+      // document.querySelector("ul ul")
+
+
+      // document.querySelector() // will give you a single element
+      // document.querySelectorAll() // will give you a collection of elements
+
+
+
+
+      
+      // div.classList.contains("night")
+      
+      // const div = document.getElementById("app");
+      // console.log(div)
+
+      // function swapTheme() {
+      //   const div = document.querySelector("#app");
+      //   const btn = document.querySelector("#swap");
+
+      //   if (div.classList.contains("day")) {
+      //     div.classList.remove("day");
+      //     div.classList.add("night");
+      //   } else {
+      //     div.classList.remove("night");
+      //     div.classList.add("day");
+      //   }
+
+      //   if (btn.classList.contains("button_day")) {
+      //     btn.classList.remove("button_day");
+      //     btn.classList.add("button_night");
+      //   } else {
+      //     btn.classList.remove("button_night");
+      //     btn.classList.add("button_day");
+      //   }
+      // }
+
+      // classList
+      // previousElementSibling
+      // nextElementSibling
+      // firstChild
+      // lastChild
+      // parentElement
+      // children
+
+      //   const numbers = [12];
+
+      //     // let sum = 0
+      //     // for (let i = 0; i < numbers.length; i++) {
+      //     //   sum += numbers[i]
+      //     // }
+      //     // console.log(sum)
+
+      //   const sum = numbers.reduce((previous, current) => {
+      //     return previous + current;
+      //   }, 0);
+      //   console.log(sum)
+    </script>
+  </body>
+</html>
