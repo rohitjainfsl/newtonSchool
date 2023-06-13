@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this keyword</title>
+  </head>
+  <body>
+    <script>
+      // const arr = new Array()
+      // const str = new String() //
+      // const num = new Number() //
+
+      // const func = new Function() //
+
+      // const obj = new Object()
+
+      // arr.pop()
+
+      // Array derives from Array.prototype
+      // Number derives from Number.prototype
+      // String derives from String.prototype
+      // Object derives from Object.prototype
+      // Function derives from Function.prototype
+
+      //   function Person(first, last, age, eyecolor) {
+      //     this.firstName = first;
+      //     this.lastName = last;
+      //     this.age = age;
+      //     this.eyeColor = eyecolor;
+      //   }
+
+      //   Person.nationality = "Indian"
+      //   Person.fullName = function(){}
+
+      //   Person.prototype.nationality = "Indian";
+
+      //   Person.prototype.fullName = function () {
+      //     return this.firstName + " " + this.lastName;
+      //   };
+
+      // Polyfill
+      // Array.prototype.push
+
+      //Prototypal Inheritance
+
+      // __proto__
+
+      //setPrototypeOf
+
+      //getPrototypeOf
+
+      const Parent = {
+        greeting() {
+          console.log("Hello from Parent object");
+        },
+      };
+
+      const Child = {
+        name: "child object",
+      };
+
+      // console.log(Parent.__proto__) //Object
+      // console.log(Child.__proto__) //Object
+
+      // Object.getPrototypeOf(Parent)
+      // Object.getPrototypeOf(Child)
+
+      // console.log(Child.__proto__) //{greeting: ƒ}
+
+      Child.__proto__ = Parent;
+
+      // Object.setPrototypeOf(Child, Parent)
+
+      Child.greeting();
+
+      //Let us add a function to Parent
+
+      Parent.work = () => {
+        console.log("Parents are working");
+      };
+
+      Child.work(); //Parents are working
+
+      const GrandChild = {
+        name: "grandchild object",
+      };
+
+      GrandChild.__proto__ = Child;
+
+      console.log(GrandChild.name);
+
+      //   function foo(num) {
+      //     this.count++;
+      //   }
+
+      //   foo.count = 0;
+
+      //   for (let i = 0; i < 10; i++) {
+      //     if (i > 5) {
+      //     //   foo(i);
+      //     foo.call(foo, i)
+      //     }
+      //   }
+      //   console.log(foo.count); //4
+
+      //   function baz() {
+      //     console.log("baz");
+      //     bar();
+      //   }
+
+      //   function bar() {
+      //     console.log("bar");
+      //     foo();
+      //   }
+
+      //   function foo() {
+      //     console.log("foo");
+      //   }
+      //   baz();
+
+      //   function foo() {
+      //     console.log(this.a);
+      //   }
+      //   let a = 2;
+      //   foo(); //2
+
+      //   function foo() {
+      //     "use strict";
+      //     console.log(this.a);
+      //   }
+      //   let a = 2;
+      //   foo();
+
+      //   function foo() {
+      //     console.log(this.a);
+      //   }
+      //   let obj = {
+      //     a: 2,
+      //     foo: foo,
+      //   };
+      //   obj.foo();
+
+      //   function foo() {
+      //     console.log(this.a);
+      //   }
+
+      //   let obj2 = {
+      //     a: 42,
+      //     foo: foo,
+      //   };
+
+      //   let obj1 = {
+      //     a: 2,
+      //     obj2: obj2,
+      //   };
+
+      //   obj1.obj2.foo();
+
+      //   function foo() {
+      //     console.log(this.a);
+      //   }
+
+      //   let obj = {
+      //     a: 2,
+      //     foo: foo,
+      //   };
+
+      //   let bar = obj.foo;
+
+      //   let a = "oops, global";
+
+      //   bar();
+
+      const obj = {
+        0: 12,
+        1: 15,
+        2: 12,
+        3: 14,
+        4: 12,
+        5: 13,
+      };
+
+      //   {
+      //     0:12,
+      //     1:15,
+      //     3:14,
+      //     5:13
+      //   }
+      
+
+      const values = Object.values(obj);
+
+      const temp = [];
+
+      values.forEach((value, index) => {
+        if (temp.includes(value)) {
+          obj[index] = undefined;
+        } else temp.push(value);
+      });
+    //   let newObj = {};
+      for (let x in obj) {
+        if (obj[x] !== undefined) document.write(x + " : " + obj[x] + "<br>");
+      }
+    </script>
+  </body>
+</html>

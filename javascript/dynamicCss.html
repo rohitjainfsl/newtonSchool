@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic CSS</title>
+    <style>
+      .text-here {
+        font-size: 55px;
+        font-family: sans-serif;
+        color: black;
+        text-decoration: none;
+        font-style: normal;
+        font-weight: normal;
+        line-height: normal;
+        text-align: left;
+        letter-spacing: normal;
+        word-spacing: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- html code goes here -->
+    <div class="text-here" id="text-container">This is some example text</div>
+    <label for="colorbox">Change Text Color</label>
+    <input id="colorbox" />
+    <button id="colorchange">Change Color</button>
+    <br />
+    <label for="fontsize">Change Font Size</label
+    ><input type="range" id="fontsize" default="55" min="10" max="100" />
+    <br />
+    <button id="underline" class="stylebt">Underline</button>
+    <button id="italic" class="stylebt">Italic</button>
+    <button id="bold" class="stylebt">Bold</button>
+    <br />
+    <label for="list"></label>
+    <select id="list">
+      <option value="serif">Serif</option>
+      <option value="sans-serif">Sans-Serif</option>
+      <option value="monospace">Monospace</option>
+      <option value="cursive">Cursive</option>
+      <option value="fantasy ">Fantasy</option>
+    </select>
+    <br />
+    <button id="getstyle">Get CSS Properties</button>
+
+    <script>
+      const colorChange = document.querySelector("#colorchange");
+      const colorBox = document.querySelector("#colorbox");
+      const textContainer = document.querySelector("#text-container");
+      const uib = document.querySelectorAll(".stylebt");
+      const fontSize = document.querySelector("#fontsize");
+      const fontFamily = document.querySelector("#list");
+      const getStyle = document.querySelector("#getstyle");
+
+      colorChange.addEventListener("click", () => {
+        textContainer.style.color = colorBox.value;
+      });
+
+      uib.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (button.id === "underline") {
+            textContainer.style.textDecoration =
+              textContainer.style.textDecoration === "underline"
+                ? "none"
+                : button.id;
+          } else if (button.id === "italic") {
+            textContainer.style.fontStyle =
+              textContainer.style.fontStyle === "italic" ? "normal" : button.id;
+          } else {
+            textContainer.style.fontWeight =
+              textContainer.style.fontWeight === "bold" ? "normal" : button.id;
+          }
+        });
+      });
+
+      fontSize.addEventListener("input", (e) => {
+        textContainer.style.fontSize = e.target.value + "px";
+      });
+
+      fontFamily.addEventListener("change", (e) => {
+        textContainer.style.fontFamily = e.target.value;
+      });
+
+      getStyle.addEventListener("click", function () {
+        if (document.querySelector("#css-props"))
+          document.querySelector("#css-props").remove();
+
+    //     let cssText = `color: ${textContainer.style.color};
+    // font-size: ${fontSize.value}px;
+    // text-decoration: ${
+    //   textContainer.style.textDecoration === "underline" ? "underline" : "none"
+    // };
+    // font-style: ${
+    //   textContainer.style.fontStyle === "italic" ? "italic" : "none"
+    // };
+    // font-weight: ${textContainer.style.fontWeight === "bold" ? "bold" : "none"};
+    // font-family: ${fontFamily.value};`;
+
+        const para = document.createElement("p");
+        para.id = "css-props";
+        // para.innerHTML = cssText;
+        para.innerHTML = textContainer.getAttribute("style");
+        document.body.append(para);
+      });
+    </script>
+  </body>
+</html>

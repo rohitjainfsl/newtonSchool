@@ -1,0 +1,51 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 4px;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.bomb-cell {
+  background-image: url("https://img.icons8.com/emoji/48/000000/bomb-emoji.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.clicked-cell {
+  background-color: green;
+}
+
+.clicked-bomb {
+  background-color: red;
+}
+
+.result-display {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.game-score {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.flag-score {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+#resetButton {
+  margin-top: 10px;
+  font-size: 16px;
+}

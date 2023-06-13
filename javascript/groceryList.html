@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grocery List</title>
+  </head>
+  <body>
+    <!-- Do not edit this you need to use JS to scrap prices and display their sum -->
+    <h1>Grocery List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Sr. No.</th>
+          <th>Title</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Item-1</td>
+          <td data-ns-test="price">100</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Item-2</td>
+          <td data-ns-test="price">200</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Item-3</td>
+          <td data-ns-test="price">2</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Item-4</td>
+          <td data-ns-test="price">1</td>
+        </tr>
+      </tbody>
+    </table>
+    <button onClick="calcTotal()">Total</button>
+
+    <script>
+      let firstTime = true;
+      function calcTotal() {
+        let table = document.querySelector("tbody");
+
+        if (!firstTime)
+          table.removeChild(table.children[table.children.length - 1]);
+
+        const priceTd = Array.from(
+          document.querySelectorAll("td[data-ns-test=price]")
+        );
+        const prices = priceTd.map((td) => Number(td.innerHTML));
+        const grandTotal = prices.reduce((current, prev) => {
+          return current + prev;
+        }, 0);
+        const newTr = document.createElement("tr");
+        const newTd1 = document.createElement("td");
+        const newTd2 = document.createElement("td");
+        newTd1.innerHTML = "Grand Total";
+
+        newTd2.setAttribute("data-ns-test", "grandTotal");
+        newTd2.innerHTML = grandTotal;
+
+        newTr.append(newTd1);
+        newTr.append(newTd2);
+
+        document.querySelector("table tbody").append(newTr);
+        firstTime = false
+      }
+
+    //   let time = 0;
+    //   function calcTotal() {
+    //     let table = document.querySelector("tbody");
+    //     if (time > 0) {
+    //       table.removeChild(table.children[table.children.length - 1]);
+    //     }
+    //     let lastRow = document.createElement("tr");
+    //     let prices = document.querySelectorAll("[data-ns-test=price]");
+    //     let sum = 0;
+    //     for (let i = 0; i < prices.length; i++) {
+    //       sum += parseInt(prices[i].textContent);
+    //     }
+    //     let child0 = document.createElement("td");
+    //     let child = document.createElement("td");
+    //     child0.textContent = "Grand Total";
+    //     child.setAttribute("data-ns-test", "grandTotal");
+    //     child.textContent = sum;
+    //     lastRow.appendChild(child0);
+    //     lastRow.appendChild(child);
+    //     table.appendChild(lastRow);
+    //     time++;
+    //   }
+    </script>
+  </body>
+</html>
