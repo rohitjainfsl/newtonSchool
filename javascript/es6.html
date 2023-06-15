@@ -8,28 +8,47 @@
   <body>
     <div id="wrapper"></div>
     <script>
+      // class API {
+      //   constructor(url, method = "GET") {
+      //     this.url = url;
+      //     this.method = method;
+      //   }
+      //   #secure = this.isSecure();
+
+      //   isSecure() {
+      //     return this.url.split("://")[0] === "https";
+      //   }
+      //   updateUrl(newURL) {
+      //     this.url = newURL;
+      //     this.#secure = this.isSecure()
+      //   }
+      // }
+      // const s = new API("http://api.com/api/hello");
+      // console.log(s.isSecure()); // false
+
+      // s.updateUrl("https://api.com/api/hello");
+      // console.log(s.isSecure()); // true
+
+      // console.log(s.url) // https://api.com/api/hello
+
       class API {
+        #secure;
+
         constructor(url, method = "GET") {
           this.url = url;
           this.method = method;
+          this.#secure = url.startsWith("https");
         }
-        #secure = this.isSecure();
-        
+
         isSecure() {
-          return this.url.split("://")[0] === "https";
+          return this.#secure;
         }
-        updateUrl(newURL) {
-          this.url = newURL;
-          this.#secure = this.isSecure()
+
+        updateUrl(newUrl) {
+          this.url = newUrl;
+          this.#secure = newUrl.startsWith("https");
         }
       }
-      const s = new API("http://api.com/api/hello");
-      console.log(s.isSecure()); // false
-
-      s.updateUrl("https://api.com/api/hello");
-      console.log(s.isSecure()); // true
-
-      console.log(s.url) // https://api.com/api/hello
     </script>
   </body>
 </html>
