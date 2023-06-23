@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message Logging</title>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script>
+      function createClosureFunc() {
+        let count = 0;
+        return function () {
+          if (count === 3) {
+            console.log("This function can no longer be called");
+            setTimeout(() => {
+              count = 0;
+            }, 2000);
+          } else
+            console.log("This function has been called " + ++count + " times");
+        };
+      }
+      const fun = createClosureFunc()
+
+      fun() // 1 times
+      fun() // 2 times
+      fun() // 3 times
+      fun() // no longer called
+    </script>
+  </body>
+</html>

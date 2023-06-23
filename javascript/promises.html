@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script>
+      //CONCURRENT PROMISES
+
+      //All these functions take array of promises as input
+
+      // Promise.all(): when all promises resolve. If one rejects, all are rejected. Will return an array of the resolved promises.
+      // Promise.allSettled(): when all promises settle. Will return an array of settled promises.
+      // Promise.any(): will return that promise which will leave the pending state to go to resolved state.
+      // Promise.race(): will return that promise which will come first in the race to leave the pending state.
+
+      //   const pErr = new Promise((resolve, reject) => {
+      //     reject("Always fails");
+      //   });
+
+      //   const pSlow = new Promise((resolve, reject) => {
+      //     setTimeout(resolve, 100, "Done eventually");
+      //   });
+
+      //   const pFast = new Promise((resolve, reject) => {
+      //     setTimeout(resolve, 51, "Done quick");
+      //   });
+
+      //   Promise.allSettled([pErr, pSlow, pFast])
+      //     .then((value) => {
+      //       console.log(value);
+      //     })
+      //     .catch((value) => {
+      //       console.log(value);
+      //     });
+
+      //     const pErr = new Promise((resolve, reject) => {
+      //   resolve("Always fails");
+      // });
+
+      // const pSlow = new Promise((resolve, reject) => {
+      //   setTimeout(resolve, 500, "Done eventually");
+      // });
+
+      // const pFast = new Promise((resolve, reject) => {
+      //   setTimeout(resolve, 100, "Done quick");
+      // });
+
+      // Promise.all([pErr, pSlow, pFast])
+      //   .then((value) => { console.log(value); })
+      //   .catch((value) => { console.log(value); })
+
+      // const p1 = Promise.reject(3);
+      // // const p2 = 1337;
+      // const p2 = new Promise((resolve) => {
+      //     resolve("Guptaji")
+      // })
+      // const p3 = new Promise((resolve, reject) => {
+
+      //     resolve("foo");
+
+      // });
+
+      // Promise.any([p1, p2, p3]).then((values) => {
+      //   console.log(values);
+      // });
+
+      //PROMISE ALL
+      // const promise1 = new Promise((resolve) => setTimeout(resolve, 1000, 'Hello'));
+      // const promise2 = new Promise((resolve) => setTimeout(resolve, 2000, 'World'));
+      // const promise3 = new Promise((resolve) => setTimeout(resolve, 1500, 'from Promise.all'));
+
+      // Promise.all([promise1, promise2, promise3])
+      // .then((results) => {
+      //     console.log(results);
+      // })
+      // .catch((error) => {
+      //     console.error(error);
+      // });
+
+      //PROMISE ALLSETTLED
+      // const promise1 = Promise.resolve('Resolved');
+      // const promise2 = Promise.reject(new Error('Rejected'));
+      // const promise3 = new Promise((resolve) => setTimeout(resolve, 1000, 'Delayed'));
+
+      // Promise.allSettled([promise1, promise2, promise3])
+      // .then((results) => {
+      //     console.log(results);
+      // });
+
+      //PROMISE RACE
+      // const promise1 = new Promise((resolve) => setTimeout(resolve, 2000, 'Winner'));
+      // const promise2 = new Promise((resolve) => setTimeout(resolve, 1000, 'Loser'));
+
+      // Promise.race([promise1, promise2])
+      // .then((result) => {
+      //     console.log(result);
+      // });
+
+      //PROMISE ANY
+      //   const promise1 = Promise.reject(new Error("Rejected"));
+      //   const promise2 = new Promise((resolve) =>
+      //     setTimeout(resolve, 2000, "Resolved")
+      //   );
+      //   const promise3 = new Promise((resolve) =>
+      //     setTimeout(resolve, 1000, "Delayed")
+      //   );
+
+      //   Promise.any([promise1, promise2, promise3])
+      //     .then((result) => {
+      //       console.log(result);
+      //     })
+      //     .catch((error) => {
+      //       console.error(error);
+      //     });
+
+      // const obj = {
+      //     name: 'Jishnu',
+      //     skill: 'Javascript'
+      // }
+
+      // Object.seal(obj)
+      // obj.name = 'Akash'
+      // delete obj.skill
+      // console.log(obj)
+
+      // {
+      //     name: 'Akash'
+      //     skill: 'Javascript'
+      // }
+
+      // const a = {
+      //     x:1
+      // }
+
+      // const b = {
+      //     x:1
+      // }
+
+      // a['x'] === b['x']
+      // a !== b
+      // a === b //Referential Integrity
+      // a.x === b.x
+
+      // console.log("one")
+      // setTimeout(() => {
+      //     console.log("two")
+      // },2000)
+      // for(let i=0;i<100000;i++){}
+      // console.log("three")
+
+      // let x = "Hello World"
+      // let y = x.replace("Hell", "G") //Go World
+      // console.log(y.length)
+
+      // function baz(){
+      //     console.log("baz")
+      //     bar()
+      // }
+      // function bar(){
+      //     console.log("bar")
+      //     foo()
+      // }
+
+      // function foo(){
+      //     console.log("foo")
+      // }
+      // baz()
+
+      // function foo(){
+      //     console.log(this.a);
+      // }
+      // let a = 40;
+      // foo();
+
+      // function foo(){console.log(this.a)}
+
+      // let obj = {
+      //     a:2,
+      //     foo:foo
+      // }
+      // let bar = obj.foo
+      // let a = 'Hello World'
+      // bar() // Hello World
+
+      // let obj = {}
+
+      // obj[true] = "foo"
+      // obj[3] = "bar"
+      // obj[obj] = "baz"
+
+      // console.log(obj["true"])
+      // console.log(obj["3"])
+      // console.log(obj["[object Object]"])
+
+      // let prefix = "foo"
+      // let obj = {
+      //     [prefix + "bar"]: "hello",
+      //     [prefix + "baz"]: "world"
+      // }
+      // console.log(obj["foobar"])
+      // console.log(obj["foobaz"])
+
+      //   function foo(num) {
+      //     this.count++;
+      //   }
+      //   foo.count = 0;
+
+      //   for (let i = 0; i < 10; i++) {
+      //     // if (i > 5) foo(i);
+      //     if(i > 5)   foo.call(foo, i)
+      //   }
+      //   console.log(foo.count);
+
+      // if(true){
+      //     var x = 5;
+      //     const y = 6;
+      //     let z = 7
+      // }
+      // console.log(x + y + z)
+
+      // class RainForest{
+      //     static min = 60
+      // }
+      // let forest = new RainForest()
+      // forest.min = 80
+      // console.log(forest.min)
+
+      // let pokedex = ['Snorlax', 'Jigglypuff', 'Charmandar', 'Squirtle']
+      // pokedex.pop()
+      // console.log(pokedex.pop())
+
+      // for(var i=0;i<4;i++){
+      //     setTimeout(() => {
+      //         console.log(i)
+      //     }, 1000)
+      // }
+
+      //CURRYING
+
+      //   function repeatWithDelay(count) {
+      //     let executionCount = 0;
+      //     // write your code here
+      //     setTimeout(() => {
+      //       let x = setInterval(() => {
+      //         if (executionCount === Number(count)) {
+      //           clearInterval(x);
+      //           setTimeout(() => {
+      //             console.log("Interval execution stopped");
+      //           }, 1000);
+      //         } else {
+      //           console.log(
+      //             "Interval has been executed " + ++executionCount + " time(s)"
+      //           );
+      //         }
+      //       }, 1000);
+      //     }, 1000);
+      //   }
+
+      function repeatWithDelay(count) {
+        let executionCount = 0;
+
+        // write your code here
+
+        let counter = setInterval(print, 1000);
+
+        function print() {
+          if (Number(count) === executionCount) {
+            clearInterval(counter);
+
+            console.log("Interval execution stopped");
+          } else {
+            setTimeout(() => {
+              console.log(
+                "Interval has been executed " + ++executionCount + " time(s)"
+              );
+            }, 1000);
+          }
+        }
+      }
+
+      repeatWithDelay(5);
+    </script>
+  </body>
+</html>

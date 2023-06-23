@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .d-none {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Merge arrays using spread operator</h3>
+    <p>Give input numbers in text field separated by comas</p>
+    <div>
+      <label for="1">Array 1</label>
+      <input type="text" id="1" />
+      <button id="add-1">Add to array 1</button>
+      <p id="disp-1"></p>
+    </div>
+    <div>
+      <label for="2">Array 2</label>
+      <input type="text" id="2" />
+      <button id="add-2">Add to array 2</button>
+      <p id="disp-2"></p>
+    </div>
+    <button id="merge">Merge both</button>
+    <p id="result"></p>
+    <p class="d-none" id="error">Wrong Input!</p>
+    <script>
+      const arr1 = document.getElementById("1");
+      const arr2 = document.getElementById("2");
+      const btn1 = document.getElementById("add-1");
+      const btn2 = document.getElementById("add-2");
+      const error = document.querySelector("#error");
+      const display1 = document.querySelector("#disp-1");
+      const display2 = document.querySelector("#disp-2");
+      const result = document.querySelector("#result");
+
+      const firstArray = [];
+      const secondArray = [];
+      const regex = /^[0-9,]+$/;
+
+      btn1.addEventListener("click", () => {
+        if (arr1.value.match(regex)) {
+          firstArray.push(arr1.value);
+          display1.innerHTML = "[" + firstArray + "]";
+          error.classList.add("d-none");
+        } else error.classList.remove("d-none");
+      });
+
+      btn2.addEventListener("click", () => {
+        if (arr2.value.match(regex)) {
+          secondArray.push(arr2.value);
+          display2.innerHTML = "[" + secondArray + "]";
+          error.classList.add("d-none");
+        } else error.classList.remove("d-none");
+      });
+
+      document.getElementById("merge").addEventListener("click", () => {
+        const output = [...firstArray, ...secondArray];
+        result.innerHTML = "[" + output + "]";
+      });
+    </script>
+  </body>
+</html>

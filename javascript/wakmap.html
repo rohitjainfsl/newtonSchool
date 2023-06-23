@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weakmaps</title>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script>
+      const privateData = new WeakMap();
+
+      class Person {
+        constructor(name, age) {
+          privateData.set(this, { name, age });
+        }
+
+        getName() {
+          return privateData.get(this).name;
+        }
+
+        getAge() {
+          return privateData.get(this).age;
+        }
+
+        increaseAge() {
+          const data = privateData.get(this);
+          data.age++;
+        }
+      }
+
+      const newP = new Person("Chaman", 25);
+      console.log(newP.getName()); // Output: Chaman
+      console.log(newP.getAge()); // Output: 25
+
+      newP.increaseAge();
+      console.log(newP.getAge()); // Output: 26
+
+      console.log(newP.name); // Output: undefined (private member)
+      console.log(newP.age); // Output: undefined (private member)
+    </script>
+  </body>
+</html>

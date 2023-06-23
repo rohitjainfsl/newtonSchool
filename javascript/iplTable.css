@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+thead th{
+    background-color: #00008b;
+    color: #ffffff;
+}
+tbody td{
+    border: 1px solid #dddddd;
+}
+tbody tr td:first-of-type{
+    background-color: #f2f2f2;
+}
+tbody tr td:last-of-type{
+    background-color: #d1d1d1;
+}

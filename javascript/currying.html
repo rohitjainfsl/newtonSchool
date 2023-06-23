@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currying</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <script>
+        // Currying is a technique where a function that takes multiple arguments is transformed into a sequence of functions, each taking a single argument.
+
+        // Here's how currying can be beneficial:
+
+        // Partial function application: Currying allows you to create specialized versions of a function by fixing some of its arguments. This can be useful when you want to reuse a function with specific parameters, while keeping some arguments flexible.
+
+        // Code reuse: Currying promotes code reuse by creating higher-order functions that can be composed and combined with other functions. It enables the creation of reusable function factories.
+
+        // Flexibility and composition: Curried functions can be easily composed with other functions to build more complex behavior. By creating functions that take one argument at a time, you gain flexibility in composing them with other functions.
+
+
+        // To summarize, Currying allows for greater flexibility and composability in your code, enabling you to create specialized functions, reuse code, and build complex behavior by combining smaller functions together.
+
+
+        //EXAMPLE 1:
+
+        // Simple currying example
+        function add(a) {
+          return function (b) {
+            return a + b;
+          };
+        }
+
+        const add5 = add(5); 
+        console.log(add5(3)); 
+        console.log(add5(7)); 
+
+
+
+
+
+
+
+        // Intermediate currying example
+        function greet(greeting) {
+          return function (name) {
+            return greeting + ", " + name + "!";
+          };
+        }
+
+        const greetHello = greet("Hello"); // Partially applying the greet function with 'greeting' fixed to 'Hello'
+        console.log(greetHello("John")); // Output: Hello, John!
+        console.log(greetHello("Jane")); // Output: Hello, Jane!
+
+
+
+
+
+
+
+        // Curried mathematical operations
+        const add = (a) => (b) => (c) => a + b + c;
+        const multiply = (a) => (b) => (c) => a * b * c;
+
+        const addTwoNumbers = add(2);
+        console.log(addTwoNumbers(3)(4)); // Output: 9
+
+        const multiplyThreeNumbers = multiply(2)(3);
+        console.log(multiplyThreeNumbers(4)); // Output: 24
+
+
+
+
+
+
+
+        // Curried filtering function
+        const filter = (predicate) => (array) => array.filter(predicate);
+
+        const isEven = (number) => number % 2 === 0;
+        const filterEvenNumbers = filter(isEven);
+
+        const numbers = [1, 2, 3, 4, 5, 6];
+        console.log(filterEvenNumbers(numbers)); // Output: [2, 4, 6]
+
+
+
+
+
+
+        // Curried function composition
+        const compose = (f) => (g) => (x) => f(g(x));
+
+        const increment = (x) => x + 1;
+        const double = (x) => x * 2;
+
+        const incrementAndDouble = compose(double)(increment);
+        console.log(incrementAndDouble(3)); // Output: 8
+
+
+      </script>
+    </div>
+  </body>
+</html>

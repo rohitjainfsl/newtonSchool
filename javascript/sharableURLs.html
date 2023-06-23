@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sharable URLs</title>
+  </head>
+  <body>
+    <!-- html code goes here -->
+    <form>
+      <input type="text" id="name" name="name" />
+      <input type="text" id="year" name="year" />
+      <button type="submit" id="button">Submit</button>
+      <h3 id="url">https://localhost:8080/</h3>
+    </form>
+    <script>
+      // javascript code goes here
+
+      const form = document.querySelector("form");
+      const nameField = document.querySelector("#name");
+      const yearField = document.querySelector("#year");
+      const url = document.querySelector("#url");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let queryString = "";
+        if (nameField.value.length > 0) {
+          queryString += "?name=" + nameField.value;
+          if (yearField.value.length > 0)
+            queryString += "&year=" + yearField.value;
+        } else queryString += "?year=" + yearField.value;
+
+        url.innerText += queryString;
+      });
+    </script>
+  </body>
+</html>
