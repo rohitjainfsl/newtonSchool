@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment</title>
+    <style>
+        table th, table td{
+            border: 1px solid;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <input type="text" placeholder="Enter name" id="name" />
+      <input type="text" placeholder="Enter age" id="age" />
+      <button id="add">Add</button>
+
+      <button id="printTable">Print in Table</button>
+      <p id="show"></p>
+    </div>
+
+    <script>
+      const name = document.querySelector("#name");
+      const age = document.querySelector("#age");
+      const addAge = document.querySelector("#add");
+      const show = document.querySelector("#show");
+      const printTable = document.querySelector("#printTable");
+      const arr = [];
+
+      add.addEventListener("click", function () {
+        if (name.value.length === 0 || age.value.length === 0) return;
+        const obj = {};
+        obj["name"] = name.value;
+        obj["age"] = age.value;
+        arr.push(obj);
+        
+        clearInputs();
+        console.log(arr);
+        showInputs();
+      });
+
+
+      printTable.addEventListener("click", function(){
+        if(document.querySelector("table")){
+            document.querySelector("table").remove()
+        }
+        
+        show.innerHTML = "";
+
+        const table = document.createElement("table")
+        const firstTr = document.createElement("tr")
+        const thSno = document.createElement("th")
+        const thName = document.createElement("th")
+        const thAge = document.createElement("th")
+        thName.innerHTML = "Name"
+        thAge.innerHTML = "Age"
+        thSno.innerHTML = "Sno"
+
+        firstTr.append(thSno)
+        firstTr.append(thName)
+        firstTr.append(thAge)
+        table.append(firstTr)
+
+        arr.forEach((pair, index) => {
+            const tr = document.createElement("tr")
+            const td1 = document.createElement("td")
+            const td2 = document.createElement("td")
+            const td3 = document.createElement("td")
+            td1.innerHTML = index+1
+            td2.innerHTML = pair.name
+            td3.innerHTML = pair.age
+            tr.append(td1)
+            tr.append(td2)
+            tr.append(td3)
+            table.append(tr)
+        })
+
+        document.querySelector("#wrapper").append(table)
+
+      })
+
+      function showInputs() {
+        show.innerHTML = "";
+        arr.forEach((pair) => {
+          for (let x in pair) {
+            show.innerHTML += x + " : " + pair[x] + "<br>";
+          }
+        });
+      }
+
+      function clearInputs() {
+        name.value = "";
+        age.value = "";
+      }
+    </script>
+  </body>
+</html>
