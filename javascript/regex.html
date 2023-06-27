@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regex</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- <input type="email"> -->
+      <form action="">
+        <input type="text" placeholder="Name" id="name" />
+        <span class="err"></span>
+        <br />
+        <input type="text" placeholder="Email" id="email" />
+        <span class="err"></span>
+        <br />
+        <input type="text" placeholder="Age" id="age" />
+        <span class="err"></span>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      //Rules:
+
+      // between two forward slashes //
+      // ^ $ - determine the starting and the ending of regex respectively
+      // [] - allowed characters
+      // {} - the allowed range of the user input
+
+      // + - matching can happen once or more than once
+      // . -  matching can happen exactly once
+      // ^, (, ), -
+
+      // a-z, A-Z, 0-9
+
+      //special chars inside square brackets are excaped with a backslash, to hide their usual meaning(if any) from regex
+
+      let nameExp = /^[a-zA-Z ]{4,20}$/;
+      let ageExp = /^[0-9]{1,2}$/;
+      let emailExp = /^[a-zA-Z0-9\_\.\-]+@[a-zA-Z0-9]+.[a-zA-Z]{2,5}$/;
+
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+
+        const name = document.querySelector("#name")
+        const email = document.querySelector("#email")
+        const age = document.querySelector("#age")
+
+
+
+        if(check(name, nameExp, "Input correct name")){
+            if(check(email, emailExp, "Enter a valid email")){
+               if(check(age, ageExp, "Enter age between 1 and 99")) {
+                document.querySelector("form").submit()
+               }
+            }
+        }
+
+      });
+
+      function check(elem, regex, msg){
+        //match, test
+
+        if(elem.value.match(regex)){
+            elem.nextElementSibling.textContent = ""
+            return true;
+        }
+        else{
+            elem.nextElementSibling.textContent = msg
+            return false;
+        }
+      }
+    </script>
+  </body>
+</html>

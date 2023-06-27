@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dynamic Search</title>
+  </head>
+  <body>
+    <h1>Dynamic Search</h1>
+    <input type="text" id="searchInput" placeholder="Search..." />
+    <ul id="itemList">
+      <li>Apple</li>
+      <li>Orange</li>
+      <li>Banana</li>
+      <li>Grapes</li>
+      <li>Mango</li>
+      <li>Watermelon</li>
+      <li>Pineapple</li>
+    </ul>
+    <script>
+      // javascript code goes here
+      const listItems = Array.from(document.querySelectorAll("#itemList li"));
+      const input = document.querySelector("#searchInput");
+      input.addEventListener("keyup", (e) => {
+        listItems.forEach((item) => {
+          if (
+            item.textContent.toLowerCase().includes(input.value.toLowerCase())
+          ) {
+            item.style.visibility = "visible";
+          } else item.style.visibility = "hidden";
+        });
+      });
+    </script>
+  </body>
+</html>

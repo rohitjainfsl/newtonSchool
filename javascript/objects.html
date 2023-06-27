@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+
+    <script>
+      let obj = {
+        name: "GuptaJi",
+      };
+      // Object.defineProperty(object, key, descriptor)
+
+      // Two ways to write this descriptor: data descriptors and accessor descriptors (Descriptor is always an object)
+
+      Object.defineProperty(obj, "name", {
+        // value: "Jishnu",
+        // writable: false,
+        // configurable: false,
+        // enumerable: false
+
+        get: function () {
+          duration = endTime - startTime;
+          return duration;
+        },
+      });
+
+      Object.defineProperty(obj, "email");
+    </script>
+  </body>
+</html>
