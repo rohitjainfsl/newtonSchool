@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // DEFINITION: A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment).
+
+        // function makeFunction() {
+        //   const name = "Alia";
+        //   function displayName() {
+        //     console.log(name);
+        //   }
+        //   return displayName;
+        // }
+        // const myFunction = makeFunction();
+
+        // myFunction()
+
+
+
+
+
+
+
+
+
+        
+
+      //CREATING AN ARROW FUNCTION ALSO WORKS:
+        // const makeFunction = () => {
+        //   const name = "Alia";
+        //   return () => console.log(name);
+        // };
+
+
+
+
+
+        // const makeFunction = (name = "Alia") => console.log(name)
+
+        // const myFunction = makeFunction() //Alia
+        // const myFunction2 = makeFunction("Deepika") //Deepika
+
+
+
+
+
+
+
+
+
+      //CLOSURES CAN BE USED TO CREATE PRIVATE DATA
+
+      // const MakeStack = () => {
+      //   let items = [];
+
+      //   const push = (item) => (items = [item, ...items]);
+      //   const pop = () => (items = items.slice(1));
+      //   const peek = () => items[0];
+      //   const isEmpty = () => !items.length;
+      //   const size = () => items.length;
+
+      //   return {
+      //     push,
+      //     pop,
+      //     peek,
+      //     isEmpty,
+      //     size,
+      //   };
+      // };
+
+      // const st = new MakeStack()
+      // st.push()
+      // st.pop()
+      // st.peek()
+
+      //   Because we created the items stack inside our MakeStack function, it is "private". It can be accessed only within the function. In this case, only push, pop, and other functions could touch the data. This is exactly what we're looking for.
+
+
+
+
+      //CURRYING
+
+
+        // function sum(a,b,c){
+        //   return a+b+c
+        // }
+        // console.log(sum(1,2,3))
+
+
+
+
+
+        // function sum(x) {
+        //   function b(y) {
+        //     function c(z) {
+        //       console.log(x + y + z);
+        //     }
+        //     return c
+        //   }
+        //   return b
+        // }
+        // sum(1)(2)(3) //6
+
+
+        //Refractoring the code: removing redundancy, making the LOC smaller
+
+
+      // function a(x) {
+      //     return (y) => {
+      //       return (z) => {
+      //         console.log(x + y + z);
+      //       }
+      //    }
+      // }
+      // a(1)(2)(3)
+
+
+      
+
+      // const add = (x) => (y) => (z) => x + y - z;
+      // add(1)(2)(4);
+
+
+
+
+      //MIXINS: A mixin is a object / class in which some or all of its methods and/or properties are unimplemented, requiring that another class provide the missing implementations.
+
+      //They can be viewed as objects with attributes and methods that can be easily shared across a number of other object prototypes.
+
+      // The new class then includes both the properties and methods from the mixin as well as those it defines itself.
+      // The advantage of mixins is that they can be used to simplify the design of APIs in which multiple classes / interfaces need to include the same methods and properties.
+
+
+      // EXAMPLE:
+
+      // let myMixins = {
+      //   moveUp: function(){
+      //     console.log( "move up" );
+      //   },
+      //   moveDown: function(){
+      //     console.log( "move down" );
+      //   },
+      //   stop: function(){
+      //     console.log( "stop! in the name of love!" );
+      //   }
+      // }
+
+      // function Car(){ //Car Constructor
+      //   this.moveLeft = function(){
+      //     console.log( "move left" );
+      //   }
+      // }
+      // function Person(){ //Person Constructor
+      //   this.moveRandomly = function(){ console.log("move in a zig zag manner") };
+      // }
+
+
+      // Object.assign(Car.prototype, myMixins); //Object.getPrototypeOf(Car)
+      // Object.assign(Person.prototype, myMixins);//Object.getPrototypeOf(Person)
+
+      // let myCar = new Car();
+      // myCar.moveLeft(); //move left
+      // myCar.moveDown(); //move down
+      // myCar.stop(); //stop
+
+
+      // Now, to bind mixin's functions to Car & Person, we use the Object.assign method and bind the mixin to the object’s prototype.
+
+
+
+
+
+      // ANOTHER EXAMPLE
+      let cleanRoomMixin = {
+        cleanRoom() {
+          alert(`Hello ${this.name}, your room is clean now`);
+        },
+        sayBye() {
+          alert(`Bye ${this.name}`);
+        }
+      };
+
+      // usage:
+      class User {
+        constructor(name) {
+          this.name = name;
+        }
+      }
+
+      // copy the methods
+      Object.assign(User.prototype, cleanRoomMixin);
+
+      // now User can clean the room
+      new User("Gupta Ji").cleanRoom(); // Hello Gupta Ji, your room is clean now!
+
+
+
+      //POLYFILLS
+
+      // `$`
+
+
+      //defer & async
+
+
+
+      //CODE 1
+      <html>
+        <head>
+            <title>Tricky Example 1</title>
+            <script src="script1.js" defer></script>
+            <script src="script2.js" async></script>
+        </head>
+        <body>
+            <h1>Hello, World!</h1>
+            <script src="script3.js" async></script>
+        </body>
+      </html>
+
+
+
+
+
+        <html>
+          <head>
+              <title>Tricky Example 2</title>
+              <style>
+                h1{color: white}  
+                </style>
+                <script src="scripts.js"></script>                
+              </head>
+              <body>
+                <h1>Hello, World!</h1>
+          </body>
+        </html>
+
+
+
+
+
+
+
+
+
+
+      //   Mixins ,JSON ,avoid extending builtin objects, currying, scoping scopes, private members, es6 inheritance gettters setters destructing, version, constructor prototype, property descriptors, axios, regex , polyfill, how js works , js abstraction, async defer, ajax , date time , constructor property, Js private property and methods
+    </script>
+  </body>
+</html>

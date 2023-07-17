@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Touch Typing</title>
+    <style>
+      body {
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- html code goes here -->
+
+      <div id="typing">
+        <div id="timer">0</div>
+        <div id="wpm">0</div>
+        <textarea id="container"></textarea>
+      </div>
+    </div>
+    <script>
+      // javascript code goes here
+      const body = document.body;
+      const container = document.querySelector("#container");
+      const timer = document.querySelector("#timer");
+      const wpm = document.querySelector("#wpm");
+      let startGame = false;
+      let interval;
+      let startTime;
+      let timeElapsed;
+
+      function fetchData() {
+        fetch("http://api.quotable.io/random")
+          .then((response) => {
+            return response.json();
+          })
+          .then((result) => {
+            container.textContent = result.content;
+          });
+      }
+      fetchData();
+
+      body.addEventListener("keydown", (e) => {
+        if (startGame) {
+          console.log(e.key);
+          updateWPM();
+        }
+      });
+      body.addEventListener("click", (e) => {
+        console.log(startGame, e.target.id);
+        if (e.target.id !== "container" && startGame) {
+          startGame = false;
+          stopTimer();
+        }
+      });
+
+      container.addEventListener("click", (e) => {
+        if (!startGame) {
+          startTime = new Date();
+          startGame = true;
+          startTimer();
+        }
+      });
+
+      function startTimer() {
+        let time = 1;
+        interval = setInterval(() => {
+          timeElapsed = updateTimeElapsed();
+          timer.textContent = time++;
+        }, 1000);
+      }
+      function stopTimer() {
+        clearInterval(interval);
+        timer.textContent = 0;
+      }
+      function updateTimeElapsed() {
+        return Math.floor((new Date() - startTime) / 1000);
+      }
+      function updateWPM() {
+        return Math.round(
+          Number(correctStrokes()) /
+            5.0 /
+            (Number(Time - Elapsed(sec)) / 60.0)
+        );
+      }
+    </script>
+  </body>
+</html>

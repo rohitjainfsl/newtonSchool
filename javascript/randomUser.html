@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- html code goes here -->
+    <p id="name"></p>
+    <img src="" id="image" />
+    <button id="age" data-attr="age" onclick="showAdditionalInfo(this)">
+      Age
+    </button>
+    <button id="email" data-attr="email" onclick="showAdditionalInfo(this)">
+      Email
+    </button>
+    <button id="phone" data-attr="phone" onclick="showAdditionalInfo(this)">
+      Phone
+    </button>
+    <button id="getUser" onclick="fetchData()">Get User</button>
+
+    <section>
+      <h1>additional info</h1>
+    </section>
+
+    <script>
+      // javascript code goes here
+      const fullname = document.querySelector("#name");
+      const image = document.querySelector("#image");
+      const age = document.querySelector("#age");
+      const email = document.querySelector("#email");
+      const phone = document.querySelector("#phone");
+      const section = document.querySelector("section");
+      let data = "";
+      const additionalInfoPara = document.createElement("p");
+
+      function fetchData() {
+        fetch("https://randomuser.me/api")
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result.results[0]);
+            data = result.results[0];
+            showData(data);
+          });
+      }
+      fetchData();
+
+      function showData(data) {
+        fullname.textContent = data.name.first + " " + data.name.last;
+        image.src = data.picture.large;
+      }
+
+      function showAdditionalInfo(btn) {
+        switch (btn.getAttribute("data-attr")) {
+          case "age":
+            additionalInfoPara.textContent =
+              btn.getAttribute("data-attr") + " : " + data.dob.age;
+            break;
+          case "email":
+            additionalInfoPara.textContent =
+              btn.getAttribute("data-attr") + " : " + data.email;
+            break;
+
+          case "phone":
+            additionalInfoPara.textContent =
+              btn.getAttribute("data-attr") + " : " + data.phone;
+            break;
+        }
+        section.append(additionalInfoPara);
+      }
+    </script>
+  </body>
+</html>

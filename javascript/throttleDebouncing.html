@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throttling & Debouncing</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <button id="debounceBtn">Debounce Button</button>
+      <button id="throttleBtn">Throttle Button</button>
+      
+    </div>
+    <script>
+      //Debouncing
+
+      // const debounce = (func, delay) => {
+      //   let inDebounce;
+      //   return function () {
+      //     const context = this;
+      //     const args = arguments;
+      //     clearTimeout(inDebounce);
+      //     inDebounce = setTimeout(() => func.apply(context, args), delay);
+      //   };
+      // };
+
+      // const debounceBtn = document.querySelector("#debounceBtn");
+      // debounceBtn.addEventListener(
+      //   "click",
+      //   debounce(function () {
+      //     console.info("Hey! It is", new Date().toString());
+      //   }, 3000)
+      // );
+
+      // THROTTLE
+
+      // const throttle = (func, limit) => {
+      //   let inThrottle;
+      //   return function () {
+          
+      //     if (!inThrottle) {
+      //       func();
+      //       inThrottle = true;
+      //       setTimeout(() => (inThrottle = false), limit);
+      //     }
+      //   };
+      // };
+
+      // throttleBtn.addEventListener(
+      //   "click",
+      //   throttle(function () {
+      //     return console.log("Hey! It is", new Date().toString());
+      //   }, 1000)
+      // );
+
+
+
+
+      // function throttle(func, delay) {
+      //   let lastCall = 0;
+      //   return function () {
+      //     const now = new Date().getTime();
+      //     if (now - lastCall >= delay) {
+      //       func();
+      //       lastCall = now;
+      //     }
+      //   };
+      // }
+
+      // // Example usage
+      // function handleThrottledScroll() {
+      //   console.log("Scroll event throttled");
+      // }
+      
+      // const throttledScroll = throttle(handleThrottledScroll, 500); // Throttle to 200 milliseconds
+
+      // // Attach throttledScroll as the event handler
+      // window.addEventListener("scroll", throttledScroll);
+
+
+
+
+
+      const obj = {
+        name: "Jishnu",
+        profession: "Developer",
+        address:{
+          city: "Hyderabad",
+          state: "Telangana"
+        }
+      }
+
+      const obj2 = {...obj}
+
+      // obj2.address.city = "Chennai"
+
+      // console.log(obj.address.city)
+
+      obj2.name = "Monica"
+      console.log(obj.name) //Jishnu
+
+
+
+
+      
+    </script>
+  </body>
+</html>

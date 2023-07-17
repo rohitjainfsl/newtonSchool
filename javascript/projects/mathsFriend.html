@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maths Partner</title>
+    <link rel="stylesheet" href="mathsFriend.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <form>
+        <input
+          type="text"
+          placeholder="Enter the problem"
+          name="problem"
+          id="problem"
+        />
+        <select name="category" id="category">
+          <option value="simplify">Simplify</option>
+          <option value="factor">Factor</option>
+          <option value="derive">Derive</option>
+          <option value="integrate">Integrate</option>
+          <option value="zeroes">Find 0's</option>
+          <option value="tangent">Find Tangent</option>
+          <option value="area">Area Under Curve</option>
+          <option value="cos">Cosine</option>
+          <option value="sin">Sine</option>
+          <option value="tan">Tangent</option>
+          <option value="arccos">Inverse Cosine</option>
+          <option value="arcsin">Inverse Sine</option>
+          <option value="arctan">Inverse Tangent</option>
+          <option value="abs">Absolute Value</option>
+          <option value="log">Logarithm</option>
+        </select>
+        <button type="submit">Find</button>
+      </form>
+
+      <div id="solution">
+        <button id="delete" onclick="clearSolution()">Delete</button>
+      </div>
+
+      <a href="" id="viewSaved">Saved Solutions</a>
+
+      <div id="displaySaved"></div>
+    </div>
+    <script>
+      const form = document.querySelector("form");
+      const problem = document.querySelector("#problem");
+      const category = document.querySelector("#category");
+      const solution = document.querySelector("#solution");
+      const deleteBtn = document.querySelector("#delete");
+      const viewSaved = document.querySelector("#viewSaved");
+      const displaySaved = document.querySelector("#displaySaved");
+
+      let savedSolutions = [];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const encodedCategory = encodeURIComponent(category.value);
+        const encodedProblem = encodeURIComponent(problem.value);
+        fetch(
+          "https://newton.now.sh/api/v2/" +
+            encodedCategory +
+            "/" +
+            encodedProblem
+        )
+          .then((response) => response.json())
+          .then((result) => display(result));
+      });
+
+      function display(result) {
+        savedSolutions = [...savedSolutions, result];
+        localStorage.setItem("savedSolutions", JSON.stringify(savedSolutions));
+
+        solution.innerHTML =
+          '<button id="delete" onclick="clearSolution()">Delete</button>';
+
+        const h2 = document.createElement("h2");
+        h2.textContent += result.operation + ": " + result.expression;
+
+        const p = document.createElement("p");
+        p.textContent = result.result;
+
+        solution.append(h2);
+        solution.append(p);
+        console.log(savedSolutions);
+      }
+
+      function clearSolution() {
+        solution.innerHTML =
+          '<button id="delete" onclick="clearSolution()">Delete</button>';
+      }
+
+      viewSaved.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (localStorage.getItem("savedSolutions") !== null) {
+          let obj = JSON.parse(localStorage.getItem("savedSolutions"));
+          for (let x in obj) {
+            const h2 = document.createElement("h2");
+            h2.textContent += obj[x].operation + ": " + obj[x].expression;
+
+            const p = document.createElement("p");
+            p.textContent = obj[x].result;
+
+            displaySaved.append(h2);
+            displaySaved.append(p);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dictionary</title>
+    <link rel="stylesheet" href="myDictionary.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Search for a new word</h1>
+      <form action="">
+        <input type="text" id="word" placeholder="Enter Word" />
+        <button type="submit">Search</button>
+      </form>
+      <div id="solution">
+        <button id="delete" onclick="clearSolution()">Delete</button>
+      </div>
+    </div>
+
+    <script>
+      const form = document.querySelector("form");
+      const word = document.querySelector("#word");
+      let savedSolutions = [];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const encodedWord = encodeURIComponent(word.value);
+
+        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodedWord)
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            display(result);
+          });
+      });
+
+      function display(result) {
+        savedSolutions = [...savedSolutions, result[0]];
+        localStorage.setItem("savedSolutions", JSON.stringify(savedSolutions));
+
+        solution.innerHTML =
+          '<button id="delete" onclick="clearSolution()">Delete</button>';
+
+        const p = document.createElement("p");
+        p.textContent = result[0].meanings[0].definitions[0].definition;
+
+        const h2 = document.createElement("h2")
+        h2.textContent = "Word: " + result[0].word
+
+        solution.append(h2);
+        solution.append(p);
+        console.log(savedSolutions);
+      }
+
+      function clearSolution() {
+        solution.innerHTML =
+          '<button id="delete" onclick="clearSolution()">Delete</button>';
+      }
+    </script>
+  </body>
+</html>

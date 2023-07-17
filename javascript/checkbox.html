@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .checkbox-label {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .checkbox-label input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+        border-radius: 4px;
+      }
+
+      .checkbox-label:hover .checkmark {
+        background-color: #ccc;
+      }
+
+      .checkbox-label input:checked ~ .checkmark {
+        background-color: #2196f3;
+      }
+
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      .checkbox-label input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      .checkbox-label .checkmark:after {
+        left: 7px;
+        top: 3px;
+        width: 6px;
+        height: 12px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      .submit-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .submit-button:hover {
+        background-color: #45a049;
+      }
+
+      #message {
+        margin-top: 20px;
+        font-weight: bold;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Select Your Hobbies</h1>
+    <form id="hobbyForm">
+      <label class="checkbox-label">
+        <input type="checkbox" name="hobby" value="reading" />
+        <span class="checkmark"></span>
+        Reading
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" name="hobby" value="sports" />
+        <span class="checkmark"></span>
+        Sports
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" name="hobby" value="painting" />
+        <span class="checkmark"></span>
+        Painting
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" name="hobby" value="music" />
+        <span class="checkmark"></span>
+        Music
+      </label>
+      <br />
+      <input type="submit" value="Submit" class="submit-button" />
+    </form>
+    <div id="message"></div>
+
+    <script>
+      // javascript code goes here
+
+      const checkboxes = document.querySelectorAll("input[type=checkbox]");
+
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let output = "";
+        checkboxes.forEach((box) => {
+          if (box.checked) {
+            if (output.length === 0) output += "Selected Hobbies: ";
+
+            output += box.value + ", ";
+          }
+        });
+        if (output.length === 0) output += "No hobbies selected.";
+        else {
+            
+          output = output.split("");
+          output.pop();
+          output.pop();
+          output = output.join("");
+        }
+        document.querySelector("#message").innerText = output;
+      });
+    </script>
+  </body>
+</html>
