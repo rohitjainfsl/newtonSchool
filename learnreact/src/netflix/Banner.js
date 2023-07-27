@@ -10,9 +10,6 @@ function Banner() {
   useEffect(() => {
     instance.get(urls.fetchNetflixOriginals)
     .then((result) => {
-      // console.log(result.data.results)
-
-      console.log(result.data.results[Math.floor(Math.random() * 20)]) //10.4
       setRandomMovie(result.data.results[Math.floor(Math.random() * 20)]) //10.4
     })
   }, [])
