@@ -4,7 +4,6 @@ import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 
 function MovieRow(props) {
-  const API_KEY = "";
   const img_base_path = "https://image.tmdb.org/t/p/original";
 
   const [movies, setMovies] = useState([]);

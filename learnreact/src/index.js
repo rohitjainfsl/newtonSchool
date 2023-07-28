@@ -5,9 +5,12 @@ import ReactDOM from "react-dom/client";
 // import Todo from "./Todo";
 // import Home from './tesla/Home'
 // import App from "./axiosMagic/App";
-import App from "./netflix/App";
+// import App from "./netflix/App";
 // import App from "./mouseMove/App";
+
+// import App from "./ecommerce/App";
+import Home from "./routing/Home";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(<Home />);
