@@ -6,6 +6,7 @@ import ReactDOM from "react-dom/client";
 // import Home from './tesla/Home'
 // import App from "./axiosMagic/App";
 import App from "./netflix/App";
+// import App from "./mouseMove/App";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

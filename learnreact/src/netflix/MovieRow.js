@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import instance from "./instance";
+import YouTube from "react-youtube";
+import movieTrailer from "movie-trailer";
 
 function MovieRow(props) {
-  const API_KEY = "8125db8f67d23da1d30f6063b1b794b8";
+  const API_KEY = "";
   const img_base_path = "https://image.tmdb.org/t/p/original";
 
   const [movies, setMovies] = useState([]);
-  const [iframeSrc, setIframeSrc] = useState({});
+  const [trailerURL, setTrailerURL] = useState("");
 
   //As soon as we will use state with axios, we will see some side effects.
   // The side effect in this case is an infinite loop.
@@ -23,20 +25,17 @@ function MovieRow(props) {
     });
   }, []);
 
-  function handleClick(e, id) {
-    console.log(id)
-    setIframeSrc({})
-    instance
-      .get(`movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
-      .then((data) => {
-        console.log(data.data.results)
-        const youtubeVideoObject = data.data.results.find((v) => {
-          return v.site === "YouTube" && v.type === "Trailer";
-        });
-        if (youtubeVideoObject) {
-          // console.log(youtubeVideoObject);
-          setIframeSrc(youtubeVideoObject);}
-      });
+  function handleClick(movie) {
+    if (trailerURL) setTrailerURL("");
+    else {
+      movieTrailer(movie?.name || "")
+        .then((url) => {
+          console.log(url)
+          const urlParam = new URLSearchParams(new URL(url).search);
+          setTrailerURL(urlParam.get("v"));
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   return (
@@ -50,21 +49,20 @@ function MovieRow(props) {
                 key={index}
                 src={img_base_path + movie.poster_path}
                 alt={movie.name}
-                onClick={(e) => handleClick(e, movie.id)}
+                onClick={() => handleClick(movie)}
               />
             );
           })}
         </div>
+        {trailerURL ? (
+          <YouTube
+            videoId={trailerURL}
+            opts={{ height: "390", width: "100%", autoplay: 1 }}
+          />
+        ) : (
+          ""
+        )}
       </div>
-      {Object.keys(iframeSrc).length > 0 ? (
-        <div className="modal">
-          <div className="trailer">
-            <iframe title="movieTrailer" src={`https://youtube.com/embed/${iframeSrc.key}`} ></iframe>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
     </>
   );
 }
