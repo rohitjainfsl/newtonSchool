@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite Scroll</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    #article-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .article {
+      width: calc(20% - 20px);
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div id="article-container"></div>
+
+  <script>
+    const articleContainer = document.getElementById('article-container');
+    let articleCount = 0;
+    let loading = false;
+
+    function renderArticles(count) {
+      for (let i = 1; i <= count; i++) {
+        const article = document.createElement('div');
+        article.className = 'article';
+        article.textContent = `Article ${articleCount + i}. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo aliquam tempora possimus corporis deleniti consequuntur nihil debitis dolore distinctio inventore, et illo. Similique ipsa fugit est inventore quis sequi modi.
+  Neque nemo commodi, obcaecati tempore, facilis perspiciatis, quam in fugiat temporibus quasi sit! Hic distinctio iusto rem. Laboriosam officia maiores esse odit dolore eaque aspernatur dolorem hic, labore soluta animi.
+  Fugiat ipsa rerum vero quisquam non doloremque omnis quae eum officia odio ipsam placeat voluptatibus, illo, esse laudantium corrupti! In, officiis animi cupiditate nulla commodi optio eos mollitia libero. Qui.
+  Perspiciatis, praesentium labore quos, nihil accusamus facilis error doloribus ad reiciendis dignissimos quis, magni dolorem saepe soluta inventore alias sint aspernatur est. Nesciunt, ratione. Ullam veritatis libero similique? Iure, magni?`;
+        articleContainer.appendChild(article);
+      }
+      articleCount += count;
+    }
+
+    function loadMoreArticles() {
+      if (!loading) {
+        loading = true;
+        setTimeout(() => {
+          renderArticles(5);
+          loading = false;
+        }, 1000);
+      }
+    }
+
+    renderArticles(5);
+
+    window.addEventListener('scroll', () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollPosition = window.scrollY;
+
+      if (documentHeight - (scrollPosition + windowHeight) < 100) {
+        loadMoreArticles();
+      }
+    });
+  </script>
+</body>
+</html>

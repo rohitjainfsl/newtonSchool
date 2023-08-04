@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reciepe Ready In Minutes</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #recipeList {
+        list-style-type: none;
+      }
+      #recipeList li {
+        cursor: pointer;
+        padding: 5px;
+        border: 1px solid #000;
+        margin-bottom: 10px;
+        width: 300px;
+      }
+      #recipeReadyInMinutes {
+        margin-top: 20px;
+        font-size: 20px;
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <ul id="recipeList"></ul>
+      <p id="recipeReadyInMinutes"></p>
+    </div>
+    <script>
+      // javascript code goes here
+      const recipeList = document.querySelector("#recipeList");
+      const recipeReadyInMinutes = document.querySelector(
+        "#recipeReadyInMinutes"
+      );
+
+      fetch(
+        "https://content.newtonschool.co/v1/pr/64996337e889f331d43f70ba/recipes"
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          displayLi(result);
+        });
+
+      function displayLi(arr) {
+        let li = "";
+        arr.map((recipe, index) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = recipe.title;
+          listItem.id = recipe.id;
+          listItem.addEventListener("click", (e) => {
+            console.log(recipe.id, e.target.id);
+            let minutes = arr.find((recipe) => {
+              return recipe.id === Number(e.target.id);
+            });
+            recipeReadyInMinutes.textContent =
+              "Ready in minutes: " + minutes.readyInMinutes;
+          });
+          recipeList.append(listItem);
+        });
+      }
+    </script>
+  </body>
+</html>

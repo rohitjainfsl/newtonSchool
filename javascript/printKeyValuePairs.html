@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Data from Object</title>
+</head>
+<body>
+    <div id="wrapper"></div>
+
+    <script>
+        // You are given 3 objects person1, person2 and person3. The objects may have any number of keys (and corresponding values).
+        // Write a function that prints the keys and values of the given objects ON THE SCREEN in the following manner:
+
+        // key1: value1
+        // key2: value2
+        // .
+        // .
+        // keyN: valueN
+
+        // for all the objects.
+
+        
+
+        // Sample Objects (These are just for example. Your solution must execute correctly for other objects as well)
+        const person1 = {
+            name: 'John Doe',
+            age: 20,
+            hobbies: ['reading', 'painting', 'gardening']
+        };
+        const person2 = {
+            name: 'Selmon Sen',
+            age: 40,
+            pet: "Dog",
+            hobbies: ['reading', 'painting', 'gardening']
+        };
+        const person3 = {
+            name: 'Anmon Ven',
+            age: 30,
+            work:"Coding",
+            hobbies: ['reading', 'painting', 'gardening']
+        };
+        
+
+        function printKeyValuePairs(obj1, obj2, obj3) {
+            for(let x in obj1){
+                document.write(x + ":" + obj1[x] + "<br>")
+            }
+            for(let x in obj2){
+                document.write(x + ":" + obj2[x] + "<br>")
+            }
+            for(let x in obj3){
+                document.write(x + ":" + obj3[x] + "<br>")
+            }
+        }
+        printKeyValuePairs(person1, person2, person3)
+
+
+
+
+        
+    </script>
+</body>
+</html>
