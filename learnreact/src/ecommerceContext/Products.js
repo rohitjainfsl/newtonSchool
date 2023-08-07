@@ -16,6 +16,10 @@ function Products() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cart))
+  }, [cart])
+
   function handleAddToCart(e, product) {
     e.preventDefault();
     setCart([...cart, product]);

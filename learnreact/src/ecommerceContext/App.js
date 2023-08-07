@@ -8,10 +8,14 @@ import Header from "./Header";
 export const ecommerceContext = createContext({});
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(
+    localStorage.getItem("cartItems") !== null
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : []
+  );
   return (
     <>
-      <ecommerceContext.Provider value={{cart, setCart}}>
+      <ecommerceContext.Provider value={{ cart, setCart }}>
         <BrowserRouter>
           <Header />
           <Routes>

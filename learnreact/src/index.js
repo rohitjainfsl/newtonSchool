@@ -13,8 +13,10 @@ import ReactDOM from "react-dom/client";
 
 // import App from './reactImageFetcher/components/App'
 // import App from './liftingStateUp/App'
-import App from './ecommerceContext/App'
+// import App from './ecommerceContext/App'
 // import App from './todoListOld/components/App'
+// import UseRef from './ref/UseRef'
+import App from './portals/App'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
