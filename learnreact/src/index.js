@@ -16,7 +16,14 @@ import ReactDOM from "react-dom/client";
 // import App from './ecommerceContext/App'
 // import App from './todoListOld/components/App'
 // import UseRef from './ref/UseRef'
-import App from './portals/App'
+// import App from './portals/App'
+import Counter from "./reduxCounterExample/Counter";
+import { Provider } from "react-redux";
+import { reduxStore } from "./reduxCounterExample/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(
+  <Provider store={reduxStore}>
+    <Counter />
+  </Provider>
+);
