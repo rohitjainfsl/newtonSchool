@@ -28,6 +28,7 @@ function Todo() {
       setTasks(tasks);
       setIsEditing(false);
     }
+    setInput("")
   }
   function handleDelete(e, idToDelete) {
     e.preventDefault();
