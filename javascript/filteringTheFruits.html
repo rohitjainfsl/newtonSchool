@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filtering The Fruits</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: auto;
+      }
+
+      #fruitType,
+      #filterBtn {
+        margin-top: 20px;
+      }
+
+      #fruitList {
+        list-style-type: none;
+        margin-top: 30px;
+        padding-left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Filter Fruits By Type</h2>
+      <select id="fruitType">
+        <option value="all">All</option>
+        <option value="citrus">Citrus</option>
+        <option value="berry">Berry</option>
+        <option value="stone">Stone Fruit</option>
+      </select>
+      <button id="filterBtn">Filter</button>
+      <ul id="fruitList">
+        <!-- Fruits will be displayed here -->
+      </ul>
+    </div>
+
+    <script>
+      const fruits = [
+        { name: "Lemon", type: "citrus" },
+        { name: "Orange", type: "citrus" },
+        { name: "Strawberry", type: "berry" },
+        { name: "Blueberry", type: "berry" },
+        { name: "Peach", type: "stone" },
+        { name: "Cherry", type: "stone" },
+      ];
+      const filterBtn = document.querySelector("#filterBtn");
+      const fruitType = document.querySelector("#fruitType");
+      const fruitList = document.querySelector("#fruitList");
+      let output = "";
+      filterBtn.onclick = () => {
+        if (fruitType.value === "all") {
+          fruitList.innerHTML = "";
+          fruits.forEach((element) => {
+            fruitList.innerHTML += "<li>" + element.name + "</li>";
+          });
+        } else {
+          output = fruits.filter((fruit) => {
+            return fruit.type === fruitType.value;
+          });
+          
+          fruitList.innerHTML = "";
+          output.forEach((element) => {
+            fruitList.innerHTML += "<li>" + element.name + "</li>";
+          });
+        }
+      };
+    </script>
+  </body>
+</html>

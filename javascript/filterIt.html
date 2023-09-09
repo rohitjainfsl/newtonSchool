@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fiter It</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      #numbers {
+        width: 250px;
+        height: 30px;
+        margin-right: 10px;
+        padding: 5px;
+      }
+
+      #submitBtn {
+        padding: 5px 10px;
+      }
+
+      #result {
+        margin-top: 20px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form id="numberForm">
+      <input
+        type="text"
+        id="numbers"
+        placeholder="Enter comma-separated numbers..."
+      />
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    <p id="result"></p>
+    <script>
+        // javascript code goes here
+
+      const form = document.querySelector("form")
+      const input = document.querySelector("input")
+
+      form.onsubmit = (e) => {
+        e.preventDefault()
+        const numbers = input.value.split(",")
+        const evenNumbers = numbers.filter((number) => {
+          return number % 2 === 0
+        })
+        document.querySelector("#result").innerHTML = "The even numbers are: "+ evenNumbers.join(", ")
+      }
+
+
+    </script>
+  </body>
+</html>

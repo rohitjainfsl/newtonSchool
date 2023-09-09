@@ -1,0 +1,44 @@
+<!-- You are given an HTML CSS project in which you need to add functionality.
+
+When the button with id increaseBtn is clicked the text inside the paragraph tag with id text should increase by 2px.
+When the button with id decreaseBtn is clicked the text inside the paragraph tag with id text should decrease by 2px.
+
+The default font-size is 18px. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Size Changer</title>
+    <style>
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+      }
+      h1 {
+        text-align: center;
+      }
+      #text {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Text Size Changer</h1>
+
+      <p id="text">This is some sample text.</p>
+
+      <button id="increaseBtn">+</button>
+      <button id="decreaseBtn">-</button>
+    </div>
+  </body>
+</html>
